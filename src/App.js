@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import AdminDashboard from './components/AdminDashboard';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
     <div className='App'>
-      <AdminDashboard />
+      <Navigation />
     </div>
   );
 }
