@@ -17,6 +17,9 @@ export default function Navigation() {
   return (
     <div>
       <nav style={styles.navStyles}>
+        <Link style={styles.linkStyles} to='/'>
+          Home
+        </Link>
         <Link style={styles.linkStyles} to='/rsvp'>
           RSVP
         </Link>
