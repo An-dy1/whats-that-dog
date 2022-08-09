@@ -10,6 +10,7 @@ const styles = {
   },
   linkStyles: {
     margin: '0 2rem',
+    textDecoration: 'none',
   },
 };
 
@@ -20,6 +21,7 @@ export default function Navigation() {
         <Link style={styles.linkStyles} to='/'>
           Home
         </Link>
+
         <Link style={styles.linkStyles} to='/rsvp'>
           RSVP
         </Link>

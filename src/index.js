@@ -8,10 +8,12 @@ import Donate from './routes/donate';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './routes/home';
+import Logo from './components/Logo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Logo />
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
