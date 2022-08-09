@@ -7,6 +7,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   linkStyles: {
     margin: '0 2rem',
@@ -18,19 +19,29 @@ export default function Navigation() {
   return (
     <div>
       <nav style={styles.navStyles}>
-        <Link style={styles.linkStyles} to='/'>
-          Home
-        </Link>
+        <div class='navLink'>
+          <Link style={styles.linkStyles} to='/'>
+            Home
+          </Link>
+        </div>
 
-        <Link style={styles.linkStyles} to='/rsvp'>
-          RSVP
-        </Link>
-        <Link style={styles.linkStyles} to='/guess'>
-          Guess
-        </Link>
-        <Link style={styles.linkStyles} to='/donate'>
-          Donate
-        </Link>
+        <div class='navLink'>
+          <Link style={styles.linkStyles} to='/rsvp'>
+            RSVP
+          </Link>
+        </div>
+
+        <div class='navLink'>
+          <Link style={styles.linkStyles} to='/guess'>
+            Guess
+          </Link>
+        </div>
+
+        <div class='navLink'>
+          <Link style={styles.linkStyles} to='/donate'>
+            Donate
+          </Link>
+        </div>
       </nav>
       <Outlet />
     </div>
