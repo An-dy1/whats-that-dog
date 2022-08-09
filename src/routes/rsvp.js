@@ -1,3 +1,6 @@
+import Headline from '../components/Headline';
+
 export default function Rsvp() {
-  return <h1>RSVP</h1>;
+  const title = 'RSVP';
+  return <Headline title={title}></Headline>;
 }
