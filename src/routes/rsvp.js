@@ -1,5 +1,6 @@
 import Headline from '../components/Headline';
 import Navigation from '../components/Navigation';
+import RsvpComponent from '../components/user/RsvpComponent';
 
 export default function Rsvp() {
   const title = 'RSVP';
@@ -9,6 +10,7 @@ export default function Rsvp() {
     <div>
       <Headline title={title} subhead={subhead}></Headline>
       <Navigation />
+      <RsvpComponent />
     </div>
   );
 }
