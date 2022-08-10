@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import data from '../../static/guests.json';
 
 export default function RsvpComponent(props) {
   const [firstName, setFirstName] = useState('');
@@ -6,7 +7,13 @@ export default function RsvpComponent(props) {
 
   const handleNameInput = (e) => {
     let input = e.target.value;
-    e.target.id == 'firstName' ? setFirstName(input) : setLastName(input);
+    e.target.id === 'firstName' ? setFirstName(input) : setLastName(input);
+  };
+
+  const handleFindRSVPClick = (e) => {
+    e.preventDefault();
+    let values = Object.values(data.data);
+    console.log(values[0].firstName);
   };
 
   return (
@@ -18,7 +25,7 @@ export default function RsvpComponent(props) {
         onChange={handleNameInput}
         id='firstName'
         type='text'
-        value={firstName}
+        value={firstName || ''}
       ></input>
 
       <label htmlFor='lastName'>Last name:</label>
@@ -26,10 +33,10 @@ export default function RsvpComponent(props) {
         onChange={handleNameInput}
         id='lastName'
         type='text'
-        value={lastName}
+        value={lastName || ''}
       ></input>
 
-      <button>Find RSVP</button>
+      <button onClick={handleFindRSVPClick}>Find RSVP</button>
     </div>
   );
 }
