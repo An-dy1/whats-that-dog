@@ -23,7 +23,7 @@ app.get('/guests/:id', async (req, res) => {
   if (foundGuest) {
     res.send(foundGuest).status(200);
   } else {
-    res.send({}).status(404);
+    res.status(404).send('Book not found');
   }
 });
 
