@@ -1,5 +1,5 @@
 import React from 'react';
-import '@fontsource/oswald';
+import '@fontsource/source-sans-pro';
 import { Typography } from '@mui/material';
 
 const styles = {
@@ -8,6 +8,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     padding: '2.5rem',
+    paddingBottom: '0.75rem',
   },
   headlineContent: {
     margin: '0 auto',
@@ -16,7 +17,7 @@ const styles = {
   subHeadContent: {
     margin: '0 auto',
     padding: '1rem',
-    fontFamily: 'Oswald',
+    fontFamily: 'Source Sans Pro',
   },
 };
 

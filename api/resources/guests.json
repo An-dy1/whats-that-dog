@@ -3,7 +3,7 @@
             "id": 1,
             "firstName": "Andie",
             "lastName": "Johnson",
-            "plusOne": true,
+            "plusOne": false,
             "isComing": null,
             "plusOneIsComing": null
         },
