@@ -1,3 +1,27 @@
+# About
+
+I created this project as an example app for the LiftOff portion of the [LaunchCode Women+ web development boot camp](https://www.launchcode.org/women-plus).
+
+I am also using it to practice React, which I've been learning in 2022.
+
+The idea is that it's a quasi-clone of The Knot, a site for creating personalized wedding websites. Instead of a wedding planning site, however, it is a dog breed reveal planning site.
+
+My goal is to deploy this in its roughest, most MVP shape, and then keep v1 available as I refine the site in order to show how iterative software engineering is.
+
+# Tech stack
+
+Database: Mongodb
+API: Express
+Front-end: React
+Server: Node
+
+# Supporting links
+
+[My Trello board](https://trello.com/b/cCc8HnOe/guess-my-dog)
+[Miro board](https://miro.com/app/board/uXjVOhG86lE=/)
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
