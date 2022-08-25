@@ -1,0 +1,67 @@
+{
+    "data": [{
+            "id": 1,
+            "firstName": "Andie",
+            "lastName": "Johnson",
+            "plusOne": false,
+            "isComing": null,
+            "plusOneIsComing": null
+        },
+        {
+            "id": 2,
+            "firstName": "Crimson",
+            "lastName": "Jones",
+            "plusOne": true,
+            "isComing": null,
+            "plusOneIsComing": null
+        },
+        {
+            "id": 3,
+            "firstName": "Periwinkle",
+            "lastName": "Smith",
+            "plusOne": true,
+            "isComing": null,
+            "plusOneIsComing": null
+        },
+        {
+            "id": 4,
+            "firstName": "Aubergine",
+            "lastName": "Sanchez",
+            "plusOne": true,
+            "isComing": null,
+            "plusOneIsComing": null
+        },
+        {
+            "id": 5,
+            "firstName": "Scarlet",
+            "lastName": "Chen",
+            "plusOne": true,
+            "isComing": null,
+            "plusOneIsComing": null
+        },
+        {
+            "id": 6,
+            "firstName": "Cerulean",
+            "lastName": "Williams",
+            "plusOne": true,
+            "isComing": null,
+            "plusOneIsComing": null
+        },
+        {
+            "id": 7,
+            "firstName": "Peach",
+            "lastName": "Miller",
+            "plusOne": true,
+            "isComing": null,
+            "plusOneIsComing": null
+        },
+        {
+            "id": 8,
+            "firstName": "Tangerine",
+            "lastName": "Brown",
+            "plusOne": true,
+            "isComing": null,
+            "plusOneIsComing": null
+        }
+    ]
+}
