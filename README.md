@@ -28,10 +28,10 @@ npm start
 
 # Tech stack
 
-Database: Mongodb
-API: Express
-Front-end: React
-Server: Node
+- Database: Mongodb
+- API: Express
+- Front-end: React
+- Server: Node
 
 # Supporting links
 
