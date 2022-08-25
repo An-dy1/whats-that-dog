@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const data = require('./resources/guests.json');
 
 const PORT = process.env.PORT || 5001;
 
