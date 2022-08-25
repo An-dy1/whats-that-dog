@@ -8,6 +8,24 @@ The idea is that it's a quasi-clone of The Knot, a site for creating personalize
 
 My goal is to deploy this in its roughest, most MVP shape, and then keep v1 available as I refine the site in order to show how iterative software engineering is.
 
+# To run:
+
+1. Start the Express serve on port 5001:
+
+```
+cd server
+npm install
+npm start
+```
+
+2. Start the React app on port 3000:
+
+```
+cd app
+npm install
+npm start
+```
+
 # Tech stack
 
 Database: Mongodb
