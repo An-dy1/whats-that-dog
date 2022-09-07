@@ -117,3 +117,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 2. If not, just create a new schema?
 3. install mongo client
 4. import in a new db directory/file
+
+### Things I still want to reinforce:
+
+- when/why you'd use an arrow function over the classic way of declaring functions
+- ES6 syntax vs CommonJS - why you'd use one over the other
+- callback functions

@@ -55,7 +55,7 @@ export default function RsvpComponent(props) {
     e.preventDefault();
     let isInGuestList;
 
-    for (const guest of guestList.data) {
+    for (const guest of guestList) {
       if (
         guest.firstName.toLowerCase() === firstName.toLowerCase() &&
         guest.lastName.toLowerCase() === lastName.toLowerCase()
@@ -70,50 +70,48 @@ export default function RsvpComponent(props) {
   // todo after that: maybe break RSVP Info into a separate component
   return (
     <div style={styles.container}>
-      <h3 style={styles.rsvpcontent}>Find your RSVP</h3>
-
+      <h3 style={styles.rsvpcontent}> Find your RSVP </h3>
       <div style={styles.rsvpcontent}>
-        <label htmlFor='firstName'>First name: </label>
+        <label htmlFor='firstName'> First name: </label>{' '}
         <input
           onChange={handleNameInput}
           id='firstName'
           type='text'
           value={firstName || ''}
-        ></input>
+        ></input>{' '}
       </div>
-
       <div style={styles.rsvpcontent}>
-        <label htmlFor='lastName'>Last name: </label>
+        <label htmlFor='lastName'> Last name: </label>{' '}
         <input
           onChange={handleNameInput}
           id='lastName'
           type='text'
           value={lastName || ''}
-        ></input>
+        ></input>{' '}
       </div>
-
       <div style={styles.rsvpcontent}>
         <Button
           style={styles.rsvpButton}
           variant='outlined'
           onClick={handleFindRSVPClick}
         >
-          Find RSVP
-        </Button>
+          Find RSVP{' '}
+        </Button>{' '}
       </div>
-
       <div style={styles.rsvpcontent}>
+        {' '}
         {foundRsvp && (
           <div>
-            <p>Found your RSVP! Guests:</p>
+            <p> Found your RSVP!Guests: </p>{' '}
             <p>
-              {currentGuest.firstName} {currentGuest.lastName}
-            </p>
-            {currentGuest.plusOne && <p>Plus One Placeholder</p>}
+              {' '}
+              {currentGuest.firstName} {currentGuest.lastName}{' '}
+            </p>{' '}
+            {currentGuest.plusOne && <p> Plus One Placeholder </p>}{' '}
           </div>
-        )}
-        {foundRsvp === false && <p>Sorry, we can't find you in the list</p>}
-      </div>
+        )}{' '}
+        {foundRsvp === false && <p> Sorry, we can 't find you in the list</p>}{' '}
+      </div>{' '}
     </div>
   );
 }

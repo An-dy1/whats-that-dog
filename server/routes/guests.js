@@ -1,5 +1,6 @@
 const express = require('express');
 const data = require('../resources/guests.json');
+const dbConnection = require('../db/connection');
 
 // An instance of the express router.
 // We use it to define our routes.
@@ -10,10 +11,21 @@ const guestRoutes = express.Router();
 
 // GET guests
 guestRoutes.route('/guests').get(async(req, res) => {
-    data
-        ?
-        res.status(200).send(data) :
-        res.status(404).send(`Sorry, there's no data here`);
+    // returns the current connection to the database
+    const dbConnect = dbConnection.getDb();
+
+    dbConnect
+        .collection('guests')
+        .find({})
+        .limit(50)
+        .toArray((err, result) => {
+            if (err) {
+                res.status(400).send('Error fetching guests.');
+            } else {
+                // todo try: .send(result) after testing htis and see if it works
+                res.status(200).json(result);
+            }
+        });
 });
 
 // GET guests by id
