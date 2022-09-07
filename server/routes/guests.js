@@ -17,7 +17,7 @@ guestRoutes.route('/guests').get(async(req, res) => {
     dbConnect
         .collection('guests')
         .find({})
-        .limit(50)
+        .limit(200)
         .toArray((err, result) => {
             if (err) {
                 res.status(400).send('Error fetching guests.');
@@ -28,20 +28,33 @@ guestRoutes.route('/guests').get(async(req, res) => {
         });
 });
 
-// GET guests by id
+// GET guest by id
 guestRoutes.route('/guests/:id').get(async(req, res) => {
+    const dbConnect = dbConnection.getDb();
     const id = req.params.id;
     let foundGuest;
-    for (let i = 0; i < data.data.length; i++) {
-        if (data.data[i].id.toString() === id) {
-            foundGuest = data.data[i];
-        }
-    }
+    let guests;
 
-    foundGuest
-        ?
-        res.status(200).send(foundGuest) :
-        res.status(404).send('Guest not found');
+    dbConnect
+        .collection('guests')
+        .find({})
+        .limit(200)
+        .toArray((err, result) => {
+            if (err) {
+                res.status(400).send('Error fetching guests.');
+            } else {
+                guests = result;
+                for (let i = 0; i < guests.length; i++) {
+                    if (guests[i]._id.toString() === id) {
+                        foundGuest = guests[i];
+                    }
+                }
+                foundGuest
+                    ?
+                    res.status(200).send(foundGuest) :
+                    res.status(404).send('Guest not found');
+            }
+        });
 });
 
 module.exports = guestRoutes;
