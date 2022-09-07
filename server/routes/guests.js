@@ -1,13 +1,10 @@
 const express = require('express');
-const data = require('../resources/guests.json');
 const dbConnection = require('../db/connection');
 
 // An instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /guests.
 const guestRoutes = express.Router();
-
-// todo: database connection import
 
 // GET guests
 guestRoutes.route('/guests').get(async(req, res) => {
@@ -56,5 +53,7 @@ guestRoutes.route('/guests/:id').get(async(req, res) => {
             }
         });
 });
+
+// todo: POST guest
 
 module.exports = guestRoutes;
