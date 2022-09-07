@@ -110,3 +110,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Things I need to do to set up connection with mongo
+
+1. See if I can create a new cluster
+2. If not, just create a new schema?
+3. install mongo client
+4. import in a new db directory/file
