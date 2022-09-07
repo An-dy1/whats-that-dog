@@ -20,6 +20,10 @@
             "firstName": "Periwinkle",
             "lastName": "Smith",
             "plusOne": true,
+            "plusOneDetails": {
+                "firstName": "Parson",
+                "lastName": "Poldson"
+            },
             "isComing": null,
             "plusOneIsComing": null
         },

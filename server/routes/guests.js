@@ -49,9 +49,31 @@ guestRoutes.route('/guests/:id').get(async(req, res) => {
                 foundGuest
                     ?
                     res.status(200).send(foundGuest) :
-                    res.status(404).send('Guest not found');
+                    res.status(404).send('Guest not found.');
             }
         });
+});
+
+// POST guest
+guestRoutes.route('/guests').post(async(req, res) => {
+    // returns the current connection to the database
+    const dbConnect = dbConnection.getDb();
+    const guestDocument = {
+        firstName: req.body.firstName,
+        lastname: req.body.lastName,
+        plusOne: req.body.plusOne,
+        isComing: req.body.isComing,
+        plusOneDetails: req.body.plusOneDetails,
+        plusOneIsComing: req.body.plusOneIsComing,
+    };
+
+    dbConnect.collection('guests').insertOne(guestDocument, (err, result) => {
+        if (err) {
+            res.status(400).send('Error inserting guest into database.');
+        } else {
+            res.status(201).send(`Created document with id ${result.insertedId}`);
+        }
+    });
 });
 
 // todo: POST guest
