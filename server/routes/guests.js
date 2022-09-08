@@ -7,6 +7,8 @@ const ObjectId = require('bson').ObjectID;
 // The router will be added as a middleware and will take control of requests starting with path /guests.
 const guestRoutes = express.Router();
 
+// todo: improvement - could I have more specific error handling?
+
 // GET guests
 guestRoutes.route('/guests').get(async(req, res) => {
     // returns the current connection to the database
@@ -125,15 +127,29 @@ guestRoutes.route('/guests/:id').post(function(req, res) {
                 res
                     .status(400)
                     .send(
-                        `There was an issue updating the record with id ${guestsQuery._id}`
+                        `There was an issue updating the record with id ${guestsQuery._id}.`
                     );
             } else {
-                console.log(`Updated guest record with id ${guestsQuery._id}`);
-                res.status(201).send(`Updated guest record with id ${guestsQuery._id}`);
+                console.log(`Updated guest record with id ${guestsQuery._id}.`);
+                res
+                    .status(201)
+                    .send(`Updated guest record with id ${guestsQuery._id}.`);
             }
         });
 });
 
-// todo: POST guest
+// DELETE guest by id
+guestRoutes.route('/guests/:id').delete(function(req, res) {
+    const dbConnect = dbConnection.getDb();
+    const guestsQuery = { _id: ObjectId(req.params.id) };
+
+    dbConnect.collection('guests').deleteOne(guestsQuery, (err, _result) => {
+        if (err) {
+            res.status(400).send(`Error updating record with id ${guestsQuery._id}.`);
+        } else {
+            res.status(200).send(`Deleted listing with id ${guestsQuery._id}.`);
+        }
+    });
+});
 
 module.exports = guestRoutes;
