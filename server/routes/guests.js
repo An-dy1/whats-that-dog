@@ -1,5 +1,6 @@
 const express = require('express');
 const dbConnection = require('../db/connection');
+const ObjectId = require('bson').ObjectID;
 
 // An instance of the express router.
 // We use it to define our routes.
@@ -55,7 +56,7 @@ guestRoutes.route('/guests/:id').get(async(req, res) => {
 });
 
 // POST guest
-guestRoutes.route('/guests').post(async(req, res) => {
+guestRoutes.route('/guests').post(function(req, res) {
     // returns the current connection to the database
     const dbConnect = dbConnection.getDb();
     const guestDocument = {
@@ -74,6 +75,63 @@ guestRoutes.route('/guests').post(async(req, res) => {
             res.status(201).send(`Created document with id ${result.insertedId}`);
         }
     });
+});
+
+// todo: improvement - there must be a better way to do this
+function generateUpdateObject(requestBody) {
+    let updates = {};
+    let plusOneDetailsNew = {};
+    if (requestBody.firstName) {
+        updates.firstName = requestBody.firstName;
+    }
+    if (requestBody.lastName) {
+        updates.lastName = requestBody.lastName;
+    }
+    if (requestBody.plusOne) {
+        updates.plusOne = requestBody.plusOne;
+    }
+    if (requestBody.isComing) {
+        updates.isComing = requestBody.isComing;
+    }
+    if (requestBody.plusOneDetails) {
+        plusOneDetailsNew.firstName = requestBody.plusOneDetails.firstName;
+        plusOneDetailsNew.lastName = requestBody.plusOneDetails.lastName;
+        updates.plusOneDetails = plusOneDetailsNew;
+    }
+    if (requestBody.plusOneIsComing) {
+        updates.plusOneIsComing = requestBody.plusOneIsComing;
+    }
+
+    return updates;
+}
+
+// UPDATE guest record by id
+guestRoutes.route('/guests/:id').post(function(req, res) {
+    const dbConnect = dbConnection.getDb();
+    const guestsQuery = { _id: ObjectId(req.params.id) };
+
+    // todo: question - the `generateUpdateObject` method is synchronous - am I creating a weird race condition here by not making it asynchronous and awaiting its value?
+    const updates = {
+        $set: generateUpdateObject(req.body),
+    };
+
+    // this option instructs the method to create a document if no documents match the filter
+    const options = { upsert: true };
+
+    dbConnect
+        .collection('guests')
+        .updateOne(guestsQuery, updates, options, function(err, result) {
+            if (err) {
+                res
+                    .status(400)
+                    .send(
+                        `There was an issue updating the record with id ${guestsQuery._id}`
+                    );
+            } else {
+                console.log(`Updated guest record with id ${guestsQuery._id}`);
+                res.status(201).send(`Updated guest record with id ${guestsQuery._id}`);
+            }
+        });
 });
 
 // todo: POST guest
