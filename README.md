@@ -130,4 +130,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Thigns I'm learning/challenges:
 
-1.
+- API validation - I fell into the classic trap of having one piece of data I was testing with all the time that worked with the code I wrote on the front-end, but when I switched to a different record in the database everything broke. Part of that was because I was allowing situations like: required fields being null or guest details being populated when 'hasGuest' is false. In other words, data situations that shouldn't have been possible but were because I wasn't validating data I was posting to the db.
