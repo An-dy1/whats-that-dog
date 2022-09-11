@@ -22,7 +22,6 @@ guestRoutes.route('/guests').get(async(req, res) => {
             if (err) {
                 res.status(400).send('Error fetching guests.');
             } else {
-                // todo try: .send(result) after testing htis and see if it works
                 res.status(200).json(result);
             }
         });

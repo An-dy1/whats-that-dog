@@ -123,3 +123,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - when/why you'd use an arrow function over the classic way of declaring functions
 - ES6 syntax vs CommonJS - why you'd use one over the other
 - callback functions
+
+### TODO: improvements that don't fit in the repo in-line
+
+1. One script to start the server and front-end? Is there some reason that would not be a good idea?
+
+### Thigns I'm learning/challenges:
+
+1.
