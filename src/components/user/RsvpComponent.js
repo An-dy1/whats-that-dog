@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '@fontsource/source-sans-pro';
 import { Button } from '@mui/material';
+const axios = require('axios').default;
 
 const api_url = 'http://localhost:5001';
 
@@ -33,8 +34,10 @@ export default function RsvpComponent(props) {
   const [lastName, setLastName] = useState('');
   const [foundRsvp, setFoundRsvp] = useState(null);
   const [guestList, setGuestList] = useState([]);
-  const [currentGuest, setCurrentGuest] = useState({});
+  const [currentGuest, setCurrentGuest] = useState(null);
   const [primaryComing, setPrimaryComing] = useState(null);
+  const [secondaryComing, setSecondaryComing] = useState(null);
+  const [submittedRSVP, setSubmittedRSVP] = useState(null);
 
   const handleNameInput = (e) => {
     let input = e.target.value;
@@ -42,15 +45,17 @@ export default function RsvpComponent(props) {
   };
 
   const fetchGuestList = async () => {
-    let guests = await fetch(`${api_url}/guests`).then((response) =>
-      response.json()
-    );
+    let guests = await fetch(`${api_url}/guests`)
+      .then((response) => response.json())
+      .catch((error) => {
+        console.log(error);
+      });
     setGuestList(guests);
   };
 
   useEffect(() => {
     fetchGuestList();
-  }, []);
+  }, [submittedRSVP]);
 
   const handleFindRSVPClick = (e) => {
     e.preventDefault();
@@ -68,15 +73,60 @@ export default function RsvpComponent(props) {
     isInGuestList ? setFoundRsvp(true) : setFoundRsvp(false);
   };
 
+  const updateGuestRSVP = () => {
+    let updateObject = {};
+
+    if (primaryComing === true) {
+      updateObject.isComing = true;
+    }
+
+    if (primaryComing === false) {
+      console.log(`primaryComing is false`);
+      updateObject.isComing = false;
+    }
+
+    if (secondaryComing === true) {
+      updateObject.plusOneIsComing = true;
+    }
+
+    if (secondaryComing === false) {
+      console.log(`secondaryComing is false `);
+      updateObject.plusOneIsComing = false;
+    }
+
+    axios
+      .post(`${api_url}/guests/${currentGuest._id}`, updateObject)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    // todo: combine some of these into a "resetForm" method
+    setFoundRsvp(null);
+    setFirstName('');
+    setLastName('');
+    setSubmittedRSVP(true);
+    setCurrentGuest(null);
+  };
+
   const handleRsvpFormChange = (e) => {
-    if (e.target.value === 'primaryComing') {
-      console.log('primary is coming');
-      setPrimaryComing(true);
-    } else if (e.target.value === 'primaryNotComing') {
-      console.log('primary is not coming');
-      setPrimaryComing(false);
-    } else if (e.target.value === 'secondaryComing') {
-      console.log('secondary is coming');
+    switch (e.target.value) {
+      case 'primaryComing':
+        setPrimaryComing(true);
+        break;
+      case 'primaryNotComing':
+        setPrimaryComing(false);
+        break;
+      case 'secondaryComing':
+        setSecondaryComing(true);
+        break;
+      case 'secondaryNotComing':
+        setSecondaryComing(false);
+        break;
+      default:
+        console.log('nothing to update');
     }
   };
 
@@ -120,21 +170,21 @@ export default function RsvpComponent(props) {
                 {currentGuest.firstName} {currentGuest.lastName}
               </p>
               <div id='rsvpForm' onChange={handleRsvpFormChange}>
-                <label for='primaryGuestResponse'>Coming:</label>
+                <label htmlFor='primaryGuestResponse'>Coming:</label>
                 {/* todo: improvement - Names and values could be better, more succinct? */}
                 <input
                   type='radio'
                   name='primaryComing'
                   value='primaryComing'
-                  defaultChecked={primaryComing}
+                  defaultChecked={currentGuest.isComing === true}
                 />
-                <label for='primaryGuestResponse'>Not Coming:</label>
+                <label htmlFor='primaryGuestResponse'>Not Coming:</label>
                 <input
                   type='radio'
                   name='primaryComing'
                   value='primaryNotComing'
                   // note: cannot just use `!primaryComing` because null will also cause this to be checked
-                  defaultChecked={primaryComing === false}
+                  defaultChecked={currentGuest.isComing === false}
                 />
               </div>
             </span>
@@ -142,32 +192,45 @@ export default function RsvpComponent(props) {
             {currentGuest.plusOne && (
               <span>
                 <p>
-                  {currentGuest.plusOneDetails.firstName}
+                  {currentGuest.plusOneDetails.firstName}{' '}
                   {currentGuest.plusOneDetails.firstName}
                 </p>
                 <div id='rsvpForm' onChange={handleRsvpFormChange}>
-                  <label for='secondaryGuestResponse'>Coming:</label>
+                  <label htmlFor='secondaryGuestResponse'>Coming:</label>
                   {/* todo: improvement - Names and values could be better, more succinct? */}
                   <input
                     type='radio'
                     name='secondaryComing'
                     value='secondaryComing'
-                    // defaultChecked={primaryComing}
+                    defaultChecked={currentGuest.plusOneIsComing === true}
                   />
-                  <label for='secondaryGuestResponse'>Not Coming:</label>
+                  <label htmlFor='secondaryGuestResponse'>Not Coming:</label>
                   <input
                     type='radio'
                     name='secondaryComing'
                     value='secondaryNotComing'
                     // note: cannot just use `!primaryComing` because null will also cause this to be checked
-                    // defaultChecked={primaryComing === false}
+                    defaultChecked={currentGuest.plusOneIsComing === false}
                   />
                 </div>
               </span>
             )}
+
+            <div style={styles.rsvpcontent}>
+              <Button
+                style={styles.rsvpButton}
+                variant='outlined'
+                onClick={updateGuestRSVP}
+              >
+                Submit RSVP
+              </Button>
+            </div>
           </div>
         )}
         {foundRsvp === false && <p> Sorry, we can 't find you in the list</p>}
+        {submittedRSVP === true && currentGuest === null && (
+          <p>Thank you for submitting your RSVP!</p>
+        )}
       </div>
     </div>
   );

@@ -80,6 +80,7 @@ guestRoutes.route('/guests').post(function(req, res) {
 
 // todo: improvement - there must be a better way to do this
 function generateUpdateObject(requestBody) {
+    console.log(requestBody);
     let updates = {};
     let plusOneDetailsNew = {};
     if (requestBody.firstName) {
@@ -88,10 +89,10 @@ function generateUpdateObject(requestBody) {
     if (requestBody.lastName) {
         updates.lastName = requestBody.lastName;
     }
-    if (requestBody.plusOne) {
+    if (requestBody.plusOne === true || requestBody.plusOne === false) {
         updates.plusOne = requestBody.plusOne;
     }
-    if (requestBody.isComing) {
+    if (requestBody.isComing === true || requestBody.isComing === false) {
         updates.isComing = requestBody.isComing;
     }
     if (requestBody.plusOneDetails) {
@@ -99,7 +100,10 @@ function generateUpdateObject(requestBody) {
         plusOneDetailsNew.lastName = requestBody.plusOneDetails.lastName;
         updates.plusOneDetails = plusOneDetailsNew;
     }
-    if (requestBody.plusOneIsComing) {
+    if (
+        requestBody.plusOneIsComing === true ||
+        requestBody.plusOneIsComing === false
+    ) {
         updates.plusOneIsComing = requestBody.plusOneIsComing;
     }
 
@@ -129,7 +133,6 @@ guestRoutes.route('/guests/:id').post(function(req, res) {
                         `There was an issue updating the record with id ${guestsQuery._id}.`
                     );
             } else {
-                console.log(`Updated guest record with id ${guestsQuery._id}.`);
                 res
                     .status(201)
                     .send(`Updated guest record with id ${guestsQuery._id}.`);

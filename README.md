@@ -30,7 +30,7 @@ npm start
 
 - Database: Mongodb
 - API: Express
-- Front-end: React
+- Front-end: React, Axios, MaterialUI
 - Server: Node
 
 # Supporting links
@@ -131,3 +131,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Thigns I'm learning/challenges:
 
 - API validation - I fell into the classic trap of having one piece of data I was testing with all the time that worked with the code I wrote on the front-end, but when I switched to a different record in the database everything broke. Part of that was because I was allowing situations like: required fields being null or guest details being populated when 'hasGuest' is false. In other words, data situations that shouldn't have been possible but were because I wasn't validating data I was posting to the db.
+- Challenge of not having someone just to throw ideas at. The questions I would ask someone:
+  - is my Guest data modeled appropriately? I'd argue that having the plusOne details part of the Guest objects makes sense, as you wouldn't ever have a plus one without a Guest - is that right?
+  - I'm breaking out some of the HTML from the RsvpComponent into a separate component. Is there something I should do by convention or organizationally to make that kind of parent-child relationship clear? And even before that, should I make a new component file to store it, or just a function that returns HTML in the parent component itself?
+  - I'm running an axios request outside of useEffect - is that bad, because it's a side effect?
