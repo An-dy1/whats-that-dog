@@ -19,30 +19,27 @@ export default function Navigation() {
   return (
     <div>
       <nav style={styles.navStyles}>
-        <div class='navLink'>
+        <div className='navLink'>
           <Link style={styles.linkStyles} to='/'>
-            Home
-          </Link>
+            Home{' '}
+          </Link>{' '}
         </div>
-
-        <div class='navLink'>
+        <div className='navLink'>
           <Link style={styles.linkStyles} to='/rsvp'>
-            RSVP
-          </Link>
+            RSVP{' '}
+          </Link>{' '}
         </div>
-
-        <div class='navLink'>
+        <div className='navLink'>
           <Link style={styles.linkStyles} to='/guess'>
-            Guess
-          </Link>
+            Guess{' '}
+          </Link>{' '}
         </div>
-
-        <div class='navLink'>
+        <div className='navLink'>
           <Link style={styles.linkStyles} to='/donate'>
-            Donate
-          </Link>
-        </div>
-      </nav>
+            Donate{' '}
+          </Link>{' '}
+        </div>{' '}
+      </nav>{' '}
       <Outlet />
     </div>
   );

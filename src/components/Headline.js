@@ -24,13 +24,13 @@ const styles = {
 export default function Headline(props) {
   return (
     <div style={styles.headlineContainer}>
-      <h1 style={styles.headlineContent}>
-        <Typography variant='h3'>{props.title}</Typography>
-      </h1>
-
+      <div style={styles.headlineContent}>
+        <Typography variant='h3'> {props.title} </Typography>{' '}
+      </div>
       <Typography variant='h6' style={styles.subHeadContent}>
-        {props.subhead}
-      </Typography>
+        {' '}
+        {props.subhead}{' '}
+      </Typography>{' '}
     </div>
   );
 }
