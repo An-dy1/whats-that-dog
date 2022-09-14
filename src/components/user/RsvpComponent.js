@@ -103,7 +103,10 @@ export default function RsvpComponent(props) {
         console.log(error);
       });
 
-    // todo: combine some of these into a "resetForm" method
+    resetRsvpForm();
+  };
+
+  const resetRsvpForm = () => {
     setFoundRsvp(null);
     setFirstName('');
     setLastName('');
@@ -209,7 +212,7 @@ export default function RsvpComponent(props) {
                     type='radio'
                     name='secondaryComing'
                     value='secondaryNotComing'
-                    // note: cannot just use `!primaryComing` because null will also cause this to be checked
+                    // note: cannot just use `!plusOneIsComing` because null will also cause this to be checked
                     defaultChecked={currentGuest.plusOneIsComing === false}
                   />
                 </div>

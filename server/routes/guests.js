@@ -80,7 +80,6 @@ guestRoutes.route('/guests').post(function(req, res) {
 
 // todo: improvement - there must be a better way to do this
 function generateUpdateObject(requestBody) {
-    console.log(requestBody);
     let updates = {};
     let plusOneDetailsNew = {};
     if (requestBody.firstName) {
