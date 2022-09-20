@@ -135,3 +135,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   - is my Guest data modeled appropriately? I'd argue that having the plusOne details part of the Guest objects makes sense, as you wouldn't ever have a plus one without a Guest - is that right?
   - I'm breaking out some of the HTML from the RsvpComponent into a separate component. Is there something I should do by convention or organizationally to make that kind of parent-child relationship clear? And even before that, should I make a new component file to store it, or just a function that returns HTML in the parent component itself?
   - I'm running an axios request outside of useEffect - is that bad, because it's a side effect?
+- How many state objects are too many? When to combine several pieces of state into a single object, vs several separate ones
