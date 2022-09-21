@@ -38,6 +38,7 @@ export default function RsvpComponent(props) {
   const [primaryComing, setPrimaryComing] = useState(null);
   const [secondaryComing, setSecondaryComing] = useState(null);
   const [submittedRSVP, setSubmittedRSVP] = useState(null);
+  const [currentSession, setCurrentSession] = useState({});
 
   const handleNameInput = (e) => {
     let input = e.target.value;
@@ -57,7 +58,35 @@ export default function RsvpComponent(props) {
     fetchGuestList();
   }, [submittedRSVP]);
 
-  const handleFindRSVPClick = (e) => {
+  const setUserInSession = async (user) => {
+    const payload = { currentUser: user };
+
+    axios
+      .post(`${api_url}/session`, payload, { withCredentials: true })
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getUserInSession = async () => {
+    axios
+      .get(`${api_url}/session`, { withCredentials: true })
+      .then((response) => {
+        console.log(
+          'I requested the current session and it is: ' +
+            JSON.stringify(response.data)
+        );
+        setCurrentSession(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleFindRSVPClick = async (e) => {
     e.preventDefault();
     let isInGuestList;
 
@@ -70,7 +99,13 @@ export default function RsvpComponent(props) {
         setCurrentGuest(guestList[i]);
       }
     }
-    isInGuestList ? setFoundRsvp(true) : setFoundRsvp(false);
+
+    if (isInGuestList === true) {
+      setFoundRsvp(true);
+      await setUserInSession(firstName.toLowerCase());
+    } else {
+      setFoundRsvp(false);
+    }
   };
 
   const updateGuestRSVP = () => {
@@ -136,7 +171,7 @@ export default function RsvpComponent(props) {
   // todo after that: maybe break RSVP Info into a separate component
   return (
     <div style={styles.container}>
-      <h3 style={styles.rsvpcontent}> Find your RSVP </h3>
+      <h3 style={styles.rsvpcontent}> Find your RSVP </h3>{' '}
       <div style={styles.rsvpcontent}>
         <label htmlFor='firstName'> First name: </label>{' '}
         <input
@@ -145,7 +180,7 @@ export default function RsvpComponent(props) {
           type='text'
           value={firstName || ''}
         ></input>{' '}
-      </div>
+      </div>{' '}
       <div style={styles.rsvpcontent}>
         <label htmlFor='lastName'> Last name: </label>{' '}
         <input
@@ -153,88 +188,89 @@ export default function RsvpComponent(props) {
           id='lastName'
           type='text'
           value={lastName || ''}
-        ></input>
-      </div>
+        ></input>{' '}
+      </div>{' '}
       <div style={styles.rsvpcontent}>
         <Button
           style={styles.rsvpButton}
           variant='outlined'
           onClick={handleFindRSVPClick}
         >
-          Find RSVP
-        </Button>
-      </div>
+          Find RSVP{' '}
+        </Button>{' '}
+      </div>{' '}
       <div style={styles.rsvpcontent}>
+        {' '}
         {foundRsvp && (
           <div>
-            <p> Found your RSVP! Guests: </p>
+            <p> Found your RSVP!Guests: </p>{' '}
             <span>
               <p>
-                {currentGuest.firstName} {currentGuest.lastName}
-              </p>
+                {' '}
+                {currentGuest.firstName} {currentGuest.lastName}{' '}
+              </p>{' '}
               <div id='rsvpForm' onChange={handleRsvpFormChange}>
-                <label htmlFor='primaryGuestResponse'>Coming:</label>
-                {/* todo: improvement - Names and values could be better, more succinct? */}
+                <label htmlFor='primaryGuestResponse'> Coming: </label>{' '}
+                {/* todo: improvement - Names and values could be better, more succinct? */}{' '}
                 <input
                   type='radio'
                   name='primaryComing'
                   value='primaryComing'
                   defaultChecked={currentGuest.isComing === true}
-                />
-                <label htmlFor='primaryGuestResponse'>Not Coming:</label>
+                />{' '}
+                <label htmlFor='primaryGuestResponse'> Not Coming: </label>{' '}
                 <input
                   type='radio'
                   name='primaryComing'
                   value='primaryNotComing'
                   // note: cannot just use `!primaryComing` because null will also cause this to be checked
                   defaultChecked={currentGuest.isComing === false}
-                />
-              </div>
+                />{' '}
+              </div>{' '}
             </span>
-
             {currentGuest.plusOne && (
               <span>
                 <p>
+                  {' '}
                   {currentGuest.plusOneDetails.firstName}{' '}
-                  {currentGuest.plusOneDetails.firstName}
-                </p>
+                  {currentGuest.plusOneDetails.firstName}{' '}
+                </p>{' '}
                 <div id='rsvpForm' onChange={handleRsvpFormChange}>
-                  <label htmlFor='secondaryGuestResponse'>Coming:</label>
-                  {/* todo: improvement - Names and values could be better, more succinct? */}
+                  <label htmlFor='secondaryGuestResponse'> Coming: </label>{' '}
+                  {/* todo: improvement - Names and values could be better, more succinct? */}{' '}
                   <input
                     type='radio'
                     name='secondaryComing'
                     value='secondaryComing'
                     defaultChecked={currentGuest.plusOneIsComing === true}
-                  />
-                  <label htmlFor='secondaryGuestResponse'>Not Coming:</label>
+                  />{' '}
+                  <label htmlFor='secondaryGuestResponse'> Not Coming: </label>{' '}
                   <input
                     type='radio'
                     name='secondaryComing'
                     value='secondaryNotComing'
                     // note: cannot just use `!plusOneIsComing` because null will also cause this to be checked
                     defaultChecked={currentGuest.plusOneIsComing === false}
-                  />
-                </div>
+                  />{' '}
+                </div>{' '}
               </span>
             )}
-
             <div style={styles.rsvpcontent}>
               <Button
                 style={styles.rsvpButton}
                 variant='outlined'
                 onClick={updateGuestRSVP}
               >
-                Submit RSVP
-              </Button>
-            </div>
+                Submit RSVP{' '}
+              </Button>{' '}
+            </div>{' '}
           </div>
-        )}
-        {foundRsvp === false && <p> Sorry, we can 't find you in the list</p>}
+        )}{' '}
+        {foundRsvp === false && <p> Sorry, we can 't find you in the list</p>}{' '}
         {submittedRSVP === true && currentGuest === null && (
-          <p>Thank you for submitting your RSVP!</p>
-        )}
-      </div>
+          <p> Thank you for submitting your RSVP! </p>
+        )}{' '}
+      </div>{' '}
     </div>
   );
 }

@@ -7,8 +7,10 @@ const cookieName = 'currentUser';
 // set current session
 sessionRoutes.route('/session').post((req, res) => {
     res
-        .cookie(cookieName, 'testing 123', { expire: 360000 + Date.now() })
-        .send({ cookieName: 'testing123' })
+        .cookie('currentUser', req.body.currentUser, {
+            expire: 360000 + Date.now(),
+        })
+        .send({ currentUser: req.body.currentUser })
         .status(201);
 });
 
