@@ -38,7 +38,6 @@ export default function RsvpComponent(props) {
   const [primaryComing, setPrimaryComing] = useState(null);
   const [secondaryComing, setSecondaryComing] = useState(null);
   const [submittedRSVP, setSubmittedRSVP] = useState(null);
-  const [currentSession, setCurrentSession] = useState({});
 
   const handleNameInput = (e) => {
     let input = e.target.value;
@@ -58,7 +57,8 @@ export default function RsvpComponent(props) {
     fetchGuestList();
   }, [submittedRSVP]);
 
-  const setUserInSession = async (user) => {
+  const setUserInSession = async () => {
+    const user = firstName.toLowerCase() + lastName.toLowerCase();
     const payload = { currentUser: user };
 
     axios
@@ -75,11 +75,7 @@ export default function RsvpComponent(props) {
     axios
       .get(`${api_url}/session`, { withCredentials: true })
       .then((response) => {
-        console.log(
-          'I requested the current session and it is: ' +
-            JSON.stringify(response.data)
-        );
-        setCurrentSession(response.data);
+        console.log(JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log(error);
@@ -102,7 +98,7 @@ export default function RsvpComponent(props) {
 
     if (isInGuestList === true) {
       setFoundRsvp(true);
-      await setUserInSession(firstName.toLowerCase());
+      await setUserInSession();
     } else {
       setFoundRsvp(false);
     }
