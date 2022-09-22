@@ -71,16 +71,16 @@ export default function RsvpComponent(props) {
       });
   };
 
-  const getUserInSession = async () => {
-    axios
-      .get(`${api_url}/session`, { withCredentials: true })
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const getUserInSession = async () => {
+  //   axios
+  //     .get(`${api_url}/session`, { withCredentials: true })
+  //     .then((response) => {
+  //       console.log(JSON.stringify(response.data));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const handleFindRSVPClick = async (e) => {
     e.preventDefault();
