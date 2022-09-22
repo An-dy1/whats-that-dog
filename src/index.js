@@ -16,12 +16,12 @@ root.render(
     <Logo />
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='guess' element={<Guess />} />
-        <Route path='rsvp' element={<Rsvp />} />
-        <Route path='donate' element={<Donate />} />
-      </Routes>
-    </BrowserRouter>
+        <Route path='/' element={<Home />} />{' '}
+        <Route path='guess' element={<Guess />} />{' '}
+        <Route path='rsvp' element={<Rsvp />} />{' '}
+        <Route path='donate' element={<Donate />} />{' '}
+      </Routes>{' '}
+    </BrowserRouter>{' '}
   </React.StrictMode>
 );
 
