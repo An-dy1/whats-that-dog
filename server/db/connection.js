@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+
 const atlasConnectionString = process.env.ATLAS_URI;
 const client = new MongoClient(atlasConnectionString, {
     useNewUrlParser: true,
