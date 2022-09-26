@@ -1,4 +1,4 @@
-import Headline from '../components/Headline';
+import Headline from '../components/general/Headline';
 import Navigation from '../components/Navigation';
 import RsvpComponent from '../components/user/RsvpComponent';
 import '../components/user/RsvpComponent.css';
