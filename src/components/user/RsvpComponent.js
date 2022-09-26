@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '@fontsource/source-sans-pro';
 import { Button } from '@mui/material';
+import './RsvpComponent.css';
 const axios = require('axios').default;
 
 const api_url = 'http://localhost:5001';
@@ -166,7 +167,7 @@ export default function RsvpComponent(props) {
 
   // todo after that: maybe break RSVP Info into a separate component
   return (
-    <div style={styles.container}>
+    <div className='Container'>
       <h3 style={styles.rsvpcontent}> Find your RSVP </h3>{' '}
       <div style={styles.rsvpcontent}>
         <label htmlFor='firstName'> First name: </label>{' '}

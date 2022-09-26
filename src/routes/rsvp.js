@@ -1,6 +1,7 @@
 import Headline from '../components/Headline';
 import Navigation from '../components/Navigation';
 import RsvpComponent from '../components/user/RsvpComponent';
+import '../components/user/RsvpComponent.css';
 
 export default function Rsvp() {
   const title = 'RSVP';
