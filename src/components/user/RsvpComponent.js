@@ -6,24 +6,9 @@ const axios = require('axios').default;
 
 const api_url = 'http://localhost:5001';
 
+// because I'm using the MUI button element, I have to use inline styles in order
+// to override the MUI stylings
 const styles = {
-  container: {
-    display: 'flex',
-    flexFlow: 'column wrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '2.5rem',
-    paddingTop: '1rem',
-    paddingBottom: '1rem',
-    color: '#fff',
-    backgroundColor: '#422d69',
-  },
-  rsvpcontent: {
-    margin: '0 auto',
-    padding: '1rem',
-    maxWidth: '40rem',
-    fontFamily: 'Source Sans Pro',
-  },
   rsvpButton: {
     color: '#fff',
     borderColor: '#fff',
@@ -168,106 +153,103 @@ export default function RsvpComponent(props) {
   // todo after that: maybe break RSVP Info into a separate component
   return (
     <div className='Container'>
-      <h3 style={styles.rsvpcontent}> Find your RSVP </h3>{' '}
-      <div style={styles.rsvpcontent}>
-        <label htmlFor='firstName'> First name: </label>{' '}
+      <h3 className='RsvpContent'> Find your RSVP </h3>
+      <div className='RsvpContent'>
+        <label htmlFor='firstName'> First name: </label>
         <input
           onChange={handleNameInput}
           id='firstName'
           type='text'
           value={firstName || ''}
-        ></input>{' '}
-      </div>{' '}
-      <div style={styles.rsvpcontent}>
-        <label htmlFor='lastName'> Last name: </label>{' '}
+        ></input>
+      </div>
+      <div className='RsvpContent'>
+        <label htmlFor='lastName'> Last name: </label>
         <input
           onChange={handleNameInput}
           id='lastName'
           type='text'
           value={lastName || ''}
-        ></input>{' '}
-      </div>{' '}
-      <div style={styles.rsvpcontent}>
+        ></input>
+      </div>
+      <div className='RsvpContent'>
         <Button
           style={styles.rsvpButton}
           variant='outlined'
           onClick={handleFindRSVPClick}
         >
-          Find RSVP{' '}
-        </Button>{' '}
-      </div>{' '}
-      <div style={styles.rsvpcontent}>
-        {' '}
+          Find RSVP
+        </Button>
+      </div>
+      <div className='RsvpContent'>
         {foundRsvp && (
           <div>
-            <p> Found your RSVP!Guests: </p>{' '}
+            <p> Found your RSVP!Guests: </p>
             <span>
               <p>
-                {' '}
-                {currentGuest.firstName} {currentGuest.lastName}{' '}
-              </p>{' '}
+                {currentGuest.firstName} {currentGuest.lastName}
+              </p>
               <div id='rsvpForm' onChange={handleRsvpFormChange}>
-                <label htmlFor='primaryGuestResponse'> Coming: </label>{' '}
-                {/* todo: improvement - Names and values could be better, more succinct? */}{' '}
+                <label htmlFor='primaryGuestResponse'> Coming: </label>
+                {/* todo: improvement - Names and values could be better, more succinct? */}
                 <input
                   type='radio'
                   name='primaryComing'
                   value='primaryComing'
                   defaultChecked={currentGuest.isComing === true}
-                />{' '}
-                <label htmlFor='primaryGuestResponse'> Not Coming: </label>{' '}
+                />
+                <label htmlFor='primaryGuestResponse'> Not Coming: </label>
                 <input
                   type='radio'
                   name='primaryComing'
                   value='primaryNotComing'
                   // note: cannot just use `!primaryComing` because null will also cause this to be checked
                   defaultChecked={currentGuest.isComing === false}
-                />{' '}
-              </div>{' '}
+                />
+              </div>
             </span>
             {currentGuest.plusOne && (
               <span>
                 <p>
-                  {' '}
-                  {currentGuest.plusOneDetails.firstName}{' '}
-                  {currentGuest.plusOneDetails.firstName}{' '}
-                </p>{' '}
+                  {currentGuest.plusOneDetails.firstName}
+                  {currentGuest.plusOneDetails.firstName}
+                </p>
                 <div id='rsvpForm' onChange={handleRsvpFormChange}>
-                  <label htmlFor='secondaryGuestResponse'> Coming: </label>{' '}
-                  {/* todo: improvement - Names and values could be better, more succinct? */}{' '}
+                  <label htmlFor='secondaryGuestResponse'> Coming: </label>
+                  {/* todo: improvement - Names and values could be better, more succinct? */}
                   <input
                     type='radio'
                     name='secondaryComing'
                     value='secondaryComing'
                     defaultChecked={currentGuest.plusOneIsComing === true}
-                  />{' '}
-                  <label htmlFor='secondaryGuestResponse'> Not Coming: </label>{' '}
+                  />
+                  <label htmlFor='secondaryGuestResponse'> Not Coming: </label>
                   <input
                     type='radio'
                     name='secondaryComing'
                     value='secondaryNotComing'
                     // note: cannot just use `!plusOneIsComing` because null will also cause this to be checked
                     defaultChecked={currentGuest.plusOneIsComing === false}
-                  />{' '}
-                </div>{' '}
+                  />
+                </div>
               </span>
             )}
-            <div style={styles.rsvpcontent}>
+            <div className='RsvpContent'>
               <Button
                 style={styles.rsvpButton}
                 variant='outlined'
                 onClick={updateGuestRSVP}
               >
-                Submit RSVP{' '}
-              </Button>{' '}
-            </div>{' '}
+                Submit RSVP
+              </Button>
+            </div>
           </div>
-        )}{' '}
-        {foundRsvp === false && <p> Sorry, we can 't find you in the list</p>}{' '}
+        )}
+        {foundRsvp === false && <p> Sorry, we can 't find you in the list</p>}
         {submittedRSVP === true && currentGuest === null && (
           <p> Thank you for submitting your RSVP! </p>
-        )}{' '}
-      </div>{' '}
+        )}
+      </div>
     </div>
   );
 }
