@@ -1,5 +1,5 @@
 import Headline from '../components/general/Headline';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/general/Navigation';
 import RsvpComponent from '../components/user/RsvpComponent';
 import '../components/user/RsvpComponent.css';
 

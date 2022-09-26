@@ -1,4 +1,4 @@
-import Navigation from '../components/Navigation';
+import Navigation from '../components/general/Navigation';
 import Headline from '../components/general/Headline';
 
 export default function Guess() {
