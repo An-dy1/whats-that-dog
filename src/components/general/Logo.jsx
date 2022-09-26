@@ -1,6 +1,7 @@
 import '@fontsource/caveat';
 import { Typography } from '@mui/material';
 
+// will keep styles inline to override MUI styles
 const styles = {
   logo: {
     fontFamily: 'Caveat',

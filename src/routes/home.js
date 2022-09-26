@@ -1,6 +1,6 @@
 import React from 'react';
-import Headline from '../components/Headline';
-import Navigation from '../components/Navigation';
+import Headline from '../components/general/Headline';
+import Navigation from '../components/general/Navigation';
 
 export default function Home() {
   const title = "Wesley's Breed Reveal Party";

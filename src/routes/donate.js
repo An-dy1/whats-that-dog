@@ -1,5 +1,5 @@
-import Navigation from '../components/Navigation';
-import Headline from '../components/Headline';
+import Navigation from '../components/general/Navigation';
+import Headline from '../components/general/Headline';
 
 export default function Guess() {
   const title = 'Donate to the cause';

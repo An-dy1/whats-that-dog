@@ -1,0 +1,12 @@
+.HeadlineContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5rem;
+    padding-bottom: 0.75rem;
+}
+
+.HeadlineContent {
+    margin: 0 auto;
+    padding: 1rem;
+}

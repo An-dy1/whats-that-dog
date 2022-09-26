@@ -7,7 +7,7 @@ import Donate from './routes/donate';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './routes/home';
-import Logo from './components/Logo';
+import Logo from './components/general/Logo';
 import './components/user/RsvpComponent.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

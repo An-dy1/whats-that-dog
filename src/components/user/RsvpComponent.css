@@ -1,23 +1,23 @@
 .Container {
-    display: 'flex';
-    flex-flow: 'column wrap';
-    align-items: 'center';
-    justify-content: 'center';
-    padding: '2.5rem';
-    padding-top: '1rem';
-    padding-bottom: '1rem';
-    color: '#fff';
-    background-color: '#422d69';
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #fff;
+    background-color: #422d69;
 }
 
 .RsvpContent {
-    margin: '0 auto';
-    padding: '1rem';
-    max-width: '40rem';
-    font-family: 'Source Sans Pro';
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 40rem;
+    font-family: Source Sans Pro;
 }
 
 .RsvpButton {
-    color: '#fff';
-    border-color: '#fff';
+    color: #fff;
+    border-color: #fff;
 }
