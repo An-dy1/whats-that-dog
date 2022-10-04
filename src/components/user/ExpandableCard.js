@@ -10,7 +10,7 @@ export default function ExpandableCard() {
   }
 
   return (
-    <div style={{ height: cardIsExpanded ? '12vh' : '36vh' }}>
+    <div className='expandable-card-container'>
       <div className='expandable-card'>
         <div role='button' class='expand-card-button'>
           <div className='card-icon'>
@@ -24,12 +24,14 @@ export default function ExpandableCard() {
             <button onClick={handleExpandClick}>Expand me</button>
           </div>
         </div>
-      </div>
-      <div
-        className='expanded-content'
-        style={{ visibility: cardIsExpanded ? 'visible' : 'hidden' }}
-      >
-        <p>Hello</p>
+        <div
+          style={{
+            height: cardIsExpanded ? 'auto' : 0,
+            visibility: cardIsExpanded ? 'visible' : 'hidden',
+          }}
+        >
+          <p>Hello</p>
+        </div>
       </div>
     </div>
   );
