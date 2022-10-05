@@ -49,3 +49,11 @@
     padding-left: 250px;
     padding-top: 12px;
 }
+
+carousel-image-container {
+    padding: 10px;
+}
+
+.carousel-image {
+    max-height: 45vh;
+}
