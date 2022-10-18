@@ -11,9 +11,14 @@ import wesley6 from '../resources/wesley/Wesley6.jpg';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+// todo next with this component:
+// responsiveness: change breakpoints - especially the cutoff to just show one image
+// style 'expand me' button and pin it to the right hand side of the card somehow
+// make image clickable - when clicked, a larger image pops up on the screen
+// save images in the database and make an API call for them
+
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 5,
   },
@@ -41,7 +46,7 @@ export default function ExpandableCard() {
   return (
     <div className='expandable-card-container'>
       <div className='expandable-card'>
-        <div role='button' class='expand-card-button'>
+        <div class='expandable-card-collapsed'>
           <div className='card-icon'>
             <img src={userIcon} alt='user icon' width='80' height='80' />
           </div>
@@ -50,68 +55,69 @@ export default function ExpandableCard() {
             <div className='subtitle'>A collection of photos of Wesley.</div>
           </div>
           <div className='expand'>
-            <button onClick={handleExpandClick}>Expand me</button>
+            <button onClick={handleExpandClick}>
+              {cardIsExpanded ? 'Collapse' : 'Expand'}
+            </button>
           </div>
         </div>
-        <div
-          style={{
-            height: cardIsExpanded ? 'auto' : 0,
-            visibility: cardIsExpanded ? 'visible' : 'hidden',
-            margin: cardIsExpanded ? '30px' : 0,
-          }}
-        >
-          <Carousel responsive={responsive}>
-            <div class='carousel-image-container'>
-              <img
-                class='carousel-image'
-                src={wesley1}
-                alt='Wesley hanging out'
-              />
-            </div>
-            <div class='carousel-image-container'>
-              <img
-                class='carousel-image'
-                src={wesley2}
-                alt='Wesley hanging out'
-              />
-            </div>
-            <div class='carousel-image-container'>
-              <img
-                class='carousel-image'
-                src={wesley3}
-                alt='Wesley hanging out'
-              />
-            </div>
-            <div class='carousel-image-container'>
-              <img
-                class='carousel-image'
-                src={wesley1}
-                alt='Wesley hanging out'
-              />
-            </div>
-            <div class='carousel-image-container'>
-              <img
-                class='carousel-image'
-                src={wesley4}
-                alt='Wesley hanging out'
-              />
-            </div>
-            <div class='carousel-image-container'>
-              <img
-                class='carousel-image'
-                src={wesley5}
-                alt='Wesley hanging out'
-              />
-            </div>
-            <div class='carousel-image-container'>
-              <img
-                class='carousel-image'
-                src={wesley6}
-                alt='Wesley hanging out'
-              />
-            </div>
-          </Carousel>
-        </div>
+        {cardIsExpanded && (
+          <div>
+            <Carousel
+              responsive={responsive}
+              itemClass='carousel-image-container'
+            >
+              <div>
+                <img
+                  class='carousel-image'
+                  src={wesley1}
+                  alt='Wesley hanging out'
+                />
+              </div>
+              <div>
+                <img
+                  class='carousel-image'
+                  src={wesley2}
+                  alt='Wesley hanging out'
+                />
+              </div>
+              <div>
+                <img
+                  class='carousel-image'
+                  src={wesley3}
+                  alt='Wesley hanging out'
+                />
+              </div>
+              <div>
+                <img
+                  class='carousel-image'
+                  src={wesley1}
+                  alt='Wesley hanging out'
+                />
+              </div>
+              <div>
+                <img
+                  class='carousel-image'
+                  src={wesley4}
+                  alt='Wesley hanging out'
+                />
+              </div>
+              <div>
+                <img
+                  class='carousel-image'
+                  src={wesley5}
+                  alt='Wesley hanging out'
+                />
+              </div>
+              <div>
+                <img
+                  class='carousel-image'
+                  src={wesley6}
+                  alt='Wesley hanging out'
+                />
+              </div>
+            </Carousel>
+          </div>
+        )}
       </div>
     </div>
   );

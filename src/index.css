@@ -5,7 +5,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient( 155deg, rgba(255, 220, 229, 0.5), rgba(199, 229, 255, 0.5)) no-repeat;
     min-height: 100vh;
-    min-width: 320px;
+    /* min-width: 320px; */
 }
 
 code {
